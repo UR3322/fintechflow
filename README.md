@@ -2,8 +2,9 @@
 
 A full-stack fintech web application built with React.js (frontend) and Node.js/Express (backend).
 
-**Student Name:** ______________________________
-**Roll No:** ______________________________
+**Student Name:** Muhammad Usman
+
+**Roll No:** 22i-2288
 
 ---
 
