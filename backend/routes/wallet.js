@@ -100,4 +100,3 @@ router.get('/transactions', (req, res) => {
 });
 
 module.exports = router;
-module.exports.getTransactions = () => transactions;

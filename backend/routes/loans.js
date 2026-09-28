@@ -131,15 +131,16 @@ router.get('/emi-calculator', (req, res) => {
   if (isNaN(P) || P <= 0) {
     return res.status(400).json({ error: 'principal must be a positive number' });
   }
-  if (isNaN(annualRateNum) || annualRateNum <= 0) {
-    return res.status(400).json({ error: 'annualRate must be a positive number (e.g., 12 for 12%)' });
+  if (isNaN(annualRateNum) || annualRateNum < 0) {
+    return res.status(400).json({ error: 'annualRate must be a non-negative number (e.g., 12 for 12%)' });
   }
   if (isNaN(n) || n < 1) {
     return res.status(400).json({ error: 'months must be a positive integer' });
   }
 
   const r = annualRateNum / 100 / 12;
-  const emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  // At a 0% rate the standard formula divides by zero; the EMI is simply principal / months
+  const emi = r === 0 ? P / n : (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
   const totalPayable = emi * n;
   const totalInterest = totalPayable - P;
 

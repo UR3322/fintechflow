@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 const walletRouter = require('./routes/wallet');
 const loansRouter = require('./routes/loans');
 
